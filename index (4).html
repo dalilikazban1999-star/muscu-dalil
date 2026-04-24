@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>Guide Muscu — Dalil</title>
+
+<!-- PWA iOS -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Muscu Dalil">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="theme-color" content="#ffffff">
+
+<!-- Icône app écran d'accueil iOS — dégradé orange -->
+<link rel="apple-touch-icon" href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxODAgMTgwIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImciIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0b3AtY29sb3I9IiNmZjZiMWEiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmZmFhMDAiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iMTgwIiBoZWlnaHQ9IjE4MCIgcng9IjQwIiBmaWxsPSIjMGQxMTE3Ii8+PHJlY3Qgd2lkdGg9IjE4MCIgaGVpZ2h0PSIxODAiIHJ4PSI0MCIgZmlsbD0idXJsKCNnKSIgb3BhY2l0eT0iMC4xNSIvPjx0ZXh0IHg9IjkwIiB5PSI5NSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9Im1pZGRsZSIgZm9udC1zaXplPSI4MCIgZm9udC1mYW1pbHk9InNhbnMtc2VyaWYiPvCfkqo8L3RleHQ+PHRleHQgeD0iOTAiIHk9IjE1MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZmlsbD0iI2ZmNmIxYSIgZm9udC1zaXplPSIyMiIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXdlaWdodD0iYm9sZCIgbGV0dGVyLXNwYWNpbmc9IjMiPk1VU0NVPC90ZXh0Pjwvc3ZnPg==">
+
+<!-- Splash screen iOS -->
+<meta name="apple-touch-startup-image" content="">
+
+<style>
+/* Enlève le rebond iOS et la barre de navigation */
+html { height: 100%; overflow: hidden; }
+body { height: 100%; overflow-y: auto; -webkit-overflow-scrolling: touch; }
+</style>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --bg:#f5f3ef;
+  --card:#ffffff;
+  --border:#e8e0d5;
+  --accent:#c0392b;
+  --accent2:#e74c3c;
+  --warm:#d35400;
+  --warm2:#e67e22;
+  --text:#111111;
+  --grey:#888888;
+  --shadow:0 4px 24px rgba(0,0,0,0.07);
+  --shadow-sm:0 2px 8px rgba(0,0,0,0.04);
+  --radius:16px;
+}
+body{background:var(--bg);color:var(--text);font-family:'Plus Jakarta Sans',sans-serif;overflow-x:hidden;}
+
+.header{background:linear-gradient(135deg,#1a1a1a 0%,#2c2c2c 100%);padding:28px 20px 20px;text-align:center;position:sticky;top:0;z-index:100;box-shadow:0 4px 30px rgba(0,0,0,0.2);}
+.header h1{font-family:'Bebas Neue',sans-serif;font-size:2.2rem;letter-spacing:8px;color:#ffffff;}
+.header p{color:rgba(255,255,255,0.55);font-size:0.65rem;letter-spacing:3px;text-transform:uppercase;margin-top:5px;font-weight:600;}
+
+.tabs{display:flex;overflow-x:auto;background:#ffffff;border-bottom:1px solid var(--border);scrollbar-width:none;position:sticky;top:82px;z-index:99;box-shadow:0 2px 12px rgba(0,0,0,0.04);}
+.tabs::-webkit-scrollbar{display:none;}
+.tab{flex:1;min-width:fit-content;padding:14px 16px;font-size:0.78rem;font-weight:700;color:#aaa;cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-1px;transition:all 0.2s;white-space:nowrap;text-align:center;font-family:'Plus Jakarta Sans',sans-serif;}
+.tab.active{color:#111111;border-bottom-color:#111111;}
+.tab:hover{color:#555555;}
+
+.section{display:none;padding:16px;width:100%;max-width:100%;}
+.section.active{display:block;}
+.sec-title{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:3px;color:var(--text);margin-bottom:4px;}
+.sec-sub{color:var(--grey);font-size:0.72rem;letter-spacing:1px;text-transform:uppercase;margin-bottom:18px;font-weight:600;}
+
+.phase-badge{display:inline-block;font-size:0.78rem;font-weight:700;padding:6px 18px;border-radius:30px;margin-bottom:16px;letter-spacing:0.5px;}
+.ph1{background:#fdebd0;color:#784212;border:1px solid #f0b27a;}
+.ph2{background:#fff3e0;color:#e65100;border:1px solid #ffcc80;}
+.ph3{background:#fce4ec;color:#880e4f;border:1px solid #f48fb1;}
+
+.week-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin-bottom:18px;}
+.wd{border-radius:14px;padding:10px 3px;text-align:center;border:2px solid transparent;box-shadow:var(--shadow-sm);}
+.wd.sport{background:#fff0cc;border-color:#f0a500;}
+.wd.recup{background:#ffe5e5;border-color:#e05252;}
+.wd.actif{background:#d6f0ff;border-color:#3a9fd6;}
+.wd.repos{background:#f0f0f0;border-color:#cccccc;}
+.wd-n{font-size:0.68rem;font-weight:800;color:#333;letter-spacing:1px;}
+.wd-e{font-size:1.3rem;margin:5px 0;}
+.wd-l{font-size:0.5rem;text-transform:uppercase;letter-spacing:0.5px;font-weight:700;line-height:1.5;}
+.wd.sport .wd-l{color:#9a6800;}
+.wd.recup .wd-l{color:#c0392b;}
+.wd.actif .wd-l{color:#1a6e9a;}
+.wd.repos .wd-l{color:#888;}
+
+.day-card{background:var(--card);border-radius:var(--radius);margin-bottom:12px;overflow:hidden;border:1px solid var(--border);box-shadow:var(--shadow);}
+.day-head{display:flex;align-items:center;gap:12px;padding:16px 18px;cursor:pointer;}
+.day-head.sport-day{background:linear-gradient(135deg,#f0faf4,#e8f6ee);border-left:5px solid #c0392b;}
+.day-head.recup-day{background:linear-gradient(135deg,#eaf4fb,#d6eaf8);border-left:5px solid #2980b9;}
+.day-head.actif-day{background:linear-gradient(135deg,#eafaf1,#d5f5e3);border-left:5px solid #27ae60;}
+.day-head.repos-day{background:#fafafa;border-left:5px solid #e0e0e0;}
+.day-icon{font-size:1.6rem;flex-shrink:0;}
+.day-info{flex:1;}
+.day-name{font-family:'Bebas Neue',sans-serif;font-size:1.05rem;letter-spacing:2px;color:#1a1a1a;}
+.day-sub{font-size:0.72rem;color:var(--grey);margin-top:3px;font-weight:500;}
+.day-tag{font-size:0.65rem;font-weight:800;letter-spacing:0.5px;padding:5px 12px;border-radius:20px;flex-shrink:0;font-family:'Plus Jakarta Sans',sans-serif;}
+.tag-sport{background:#c0392b;color:#fff;}
+.tag-recup{background:#2980b9;color:#fff;}
+.tag-actif{background:#27ae60;color:#fff;}
+.tag-repos{background:#e5e7eb;color:#6b7280;}
+.day-arrow{color:#ccc;font-size:0.8rem;flex-shrink:0;transition:transform 0.3s;}
+.day-head.open .day-arrow{transform:rotate(180deg);}
+.day-body{display:none;padding:16px 18px;border-top:1px solid #f5f5f5;background:#fafafa;}
+.day-body.open{display:block;}
+
+.ex-row{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid #f0f0f0;}
+.ex-row:last-child{border-bottom:none;}
+.ex-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
+.dot-pec{background:#e76f51;}.dot-dos{background:#4895ef;}.dot-ep{background:#9b5de5;}
+.dot-bic{background:#f4a261;}.dot-tri{background:#00b4d8;}.dot-abs{background:#52b788;}.dot-jam{background:#7b2d8b;}
+.ex-row-name{flex:1;font-size:0.86rem;font-weight:700;color:#1a1a1a;}
+.ex-row-muscle{font-size:0.71rem;color:#aaa;margin-top:2px;font-weight:500;}
+.ex-row-sets{font-size:0.8rem;font-weight:800;color:#111;flex-shrink:0;background:#f0ece6;padding:5px 12px;border-radius:20px;font-weight:800;}
+
+.ex-card-full{background:#fff;border-radius:14px;margin-bottom:12px;border:1px solid #ede9e3;overflow:hidden;box-shadow:var(--shadow-sm);}
+.ex-card-header{display:flex;align-items:center;gap:12px;padding:13px 15px;}
+.ex-card-imgs{display:flex;gap:8px;padding:0 15px 12px;}
+.ex-card-imgs img{width:calc(50% - 4px);border-radius:10px;object-fit:cover;height:130px;background:#f5f5f5;}
+.ex-wiki-btn{display:block;margin:0 15px 13px;padding:10px 15px;background:linear-gradient(135deg,#1a1a1a,#444);color:#fff;text-decoration:none;border-radius:12px;font-size:0.82rem;font-weight:700;text-align:center;box-shadow:0 3px 12px rgba(0,0,0,0.2);}
+
+.icard{background:var(--card);border-radius:var(--radius);padding:15px 18px;margin-bottom:12px;border-left:5px solid #c0392b;box-shadow:var(--shadow-sm);}
+.icard .it{font-weight:800;font-size:0.85rem;color:#c0392b;margin-bottom:4px;}
+.icard .ib{font-size:0.82rem;color:#555;line-height:1.6;}
+
+.stats3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:14px;}
+.sbox{background:var(--card);border-radius:var(--radius);padding:16px;text-align:center;border:1px solid var(--border);box-shadow:var(--shadow-sm);}
+.sval{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;color:#111111;}
+.slbl{font-size:0.62rem;color:var(--grey);text-transform:uppercase;letter-spacing:1px;font-weight:700;margin-top:2px;}
+
+.tl-item{display:flex;gap:12px;margin-bottom:12px;align-items:flex-start;}
+.tl-time{font-weight:800;font-size:0.82rem;color:#111111;width:42px;flex-shrink:0;padding-top:14px;text-align:right;}
+.tl-card{flex:1;border-radius:var(--radius);padding:13px 15px;border:1px solid var(--border);background:var(--card);display:flex;gap:10px;align-items:flex-start;box-shadow:var(--shadow-sm);}
+.tl-card.food{border-left:4px solid #e76f51;}
+.tl-card.sport{border-left:4px solid #c0392b;background:linear-gradient(135deg,#fdf5f4,#fafafa);}
+.tl-card.shaker{border-left:4px solid #f4a261;background:linear-gradient(135deg,#fff8f0,#fafafa);}
+.tl-card.water{border-left:4px solid #4895ef;background:linear-gradient(135deg,#eff8ff,#fafafa);}
+.tl-icon{font-size:1.4rem;flex-shrink:0;}
+.tl-body{flex:1;}
+.tl-title{font-weight:800;font-size:0.88rem;margin-bottom:3px;color:#1a1a1a;}
+.tl-desc{font-size:0.81rem;color:#555;line-height:1.55;}
+.tl-tip{font-size:0.73rem;color:#888;margin-top:5px;padding:5px 9px;background:#f5f5f5;border-radius:8px;line-height:1.4;}
+
+.rc{background:linear-gradient(135deg,#eff8ff,#fafeff);border:1px solid #c5dff8;border-radius:var(--radius);padding:16px;margin-bottom:14px;box-shadow:var(--shadow-sm);}
+.rc-t{font-weight:800;font-size:0.9rem;color:#1a5276;margin-bottom:12px;}
+.rs{display:flex;gap:12px;align-items:center;padding:9px 0;border-bottom:1px solid #e3f2fd;}
+.rs:last-child{border-bottom:none;}
+.ri{font-size:1.3rem;width:30px;text-align:center;flex-shrink:0;}
+.rn{font-size:0.86rem;font-weight:700;color:#1a1a1a;}
+.rd{font-size:0.72rem;color:#888;margin-top:1px;}
+.rt{font-weight:800;font-size:0.9rem;color:#1a5276;flex-shrink:0;}
+
+.act-row{display:flex;align-items:center;gap:12px;padding:9px 0;border-bottom:1px solid #f0f5f0;}
+.act-row:last-child{border-bottom:none;}
+.act-icon{font-size:1.3rem;width:30px;text-align:center;flex-shrink:0;}
+.act-info{flex:1;}
+.act-name{font-size:0.86rem;font-weight:700;color:#1a1a1a;}
+.act-why{font-size:0.72rem;color:#888;margin-top:2px;}
+.act-time{font-weight:800;font-size:0.9rem;color:#111111;flex-shrink:0;}
+
+.legend{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px;}
+.leg-item{display:flex;align-items:center;gap:6px;background:var(--card);border-radius:20px;padding:6px 12px;border:1px solid var(--border);box-shadow:var(--shadow-sm);}
+.leg-dot{width:9px;height:9px;border-radius:50%;}
+.leg-txt{font-size:0.73rem;color:var(--grey);font-weight:600;}
+
+.shop-sec{margin-bottom:22px;}
+.shop-title{font-weight:800;font-size:0.95rem;color:#1a1a1a;margin-bottom:12px;padding-left:14px;border-left:5px solid #c0392b;}
+.shop-item{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:14px 16px;margin-bottom:10px;display:flex;align-items:center;gap:13px;text-decoration:none;color:var(--text);box-shadow:var(--shadow-sm);transition:transform 0.15s;}
+.shop-item:active{transform:scale(0.98);}
+.shop-icon{font-size:2rem;flex-shrink:0;}
+.shop-info{flex:1;}
+.shop-name{font-size:0.9rem;font-weight:700;color:#1a1a1a;}
+.shop-qty{font-size:0.73rem;color:#c0392b;margin-top:3px;font-weight:700;}
+.shop-why{font-size:0.71rem;color:#888;margin-top:2px;}
+.shop-btn{background:#111111;color:#fff;font-size:0.72rem;font-weight:800;padding:8px 14px;border-radius:20px;white-space:nowrap;flex-shrink:0;box-shadow:0 3px 10px rgba(0,0,0,0.2);}
+
+.prog-bar{background:#f5eeee;border-radius:8px;height:8px;overflow:hidden;margin-top:4px;}
+.prog-fill{height:100%;border-radius:8px;background:linear-gradient(90deg,#c0392b,#e74c3c);}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>PROGRAMME 3 MOIS</h1>
+  <p>Dalil · 1m85 · Prise de masse · Stadium Molenbeek</p>
+</div>
+
+<div class="tabs">
+  <div class="tab active" onclick="go('planning',this)"><strong>📅 PLANNING</strong></div>
+  <div class="tab" onclick="go('journee',this)"><strong>⏰ JOURNÉE</strong></div>
+  <div class="tab" onclick="go('mois1',this)"><strong>MOIS 1</strong></div>
+  <div class="tab" onclick="go('mois2',this)"><strong>MOIS 2</strong></div>
+  <div class="tab" onclick="go('mois3',this)"><strong>MOIS 3</strong></div>
+  <div class="tab" onclick="go('alimentation',this)"><strong>🥗 ALIMENTATION</strong></div>
+</div>
+
+<!-- ==================== PLANNING GÉNÉRAL ==================== -->
+<div class="section active" id="planning">
+  <div class="sec-title">VUE D'ENSEMBLE</div>
+  <div class="sec-sub">3 mois · 7 jours sur 7 · chaque jour a son utilité</div>
+
+  <div class="icard"><div class="it">💡 LA RÈGLE DES 7 JOURS</div><div class="ib">Tu vas à la salle <strong>chaque jour</strong> — mais pas toujours pour soulever. Les jours de récup sont aussi importants que les jours de sport. Le muscle pousse pendant le repos.</div></div>
+
+  <!-- SEMAINE TYPE -->
+  <div style="font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:2px;color:var(--white);margin-bottom:10px;">TA SEMAINE TYPE</div>
+  <div class="week-grid" style="margin-bottom:18px;">
+    <div class="wd sport"><div class="wd-n">LUN</div><div class="wd-e">💪</div><div class="wd-l">Pecs<br>Tri</div></div>
+    <div class="wd sport"><div class="wd-n">MAR</div><div class="wd-e">🦾</div><div class="wd-l">Dos<br>Bic</div></div>
+    <div class="wd recup"><div class="wd-n">MER</div><div class="wd-e">🔥</div><div class="wd-l">Sauna<br>Hammam</div></div>
+    <div class="wd sport"><div class="wd-n">JEU</div><div class="wd-e">💪</div><div class="wd-l">Épau<br>Avant-b</div></div>
+    <div class="wd sport"><div class="wd-n">VEN</div><div class="wd-e">🦵</div><div class="wd-l">Jambes<br>Abdos</div></div>
+    <div class="wd actif"><div class="wd-n">SAM</div><div class="wd-e">🏊</div><div class="wd-l">Piscine<br>Jacuzzi</div></div>
+    <div class="wd repos"><div class="wd-n">DIM</div><div class="wd-e">😴</div><div class="wd-l">Repos<br>Marche</div></div>
+  </div>
+  <div class="legend">
+    <div class="leg-item"><div class="leg-dot" style="background:#f0a500"></div><div class="leg-txt">💪 Séance muscu</div></div>
+    <div class="leg-item"><div class="leg-dot" style="background:#e05252"></div><div class="leg-txt">🔥 Récup sauna/hammam</div></div>
+    <div class="leg-item"><div class="leg-dot" style="background:#3a9fd6"></div><div class="leg-txt">🏊 Natation / piscine</div></div>
+    <div class="leg-item"><div class="leg-dot" style="background:#cccccc"></div><div class="leg-txt">😴 Repos complet</div></div>
+  </div>
+
+  <!-- POURQUOI CES GROUPES ENSEMBLE -->
+  <div style="font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:2px;color:var(--white);margin-bottom:10px;">POURQUOI CES GROUPES ENSEMBLE ?</div>
+
+  <div class="day-card">
+    <div class="day-head sport-day" style="cursor:default;">
+      <div class="day-icon">💪</div>
+      <div class="day-info"><div class="day-name">LUNDI — PECS + TRICEPS</div><div class="day-sub">Muscles qui travaillent ensemble naturellement</div></div>
+    </div>
+    <div class="day-body open" style="display:block;">
+      <div style="font-size:0.82rem;color:#444;line-height:1.6;">Quand tu fais le développé couché pour les pecs, tes triceps travaillent déjà. C'est logique de les finir ensemble le même jour. Ainsi le mardi quand tu fais le dos, les triceps sont déjà reposés.</div>
+    </div>
+  </div>
+
+  <div class="day-card">
+    <div class="day-head sport-day" style="cursor:default;">
+      <div class="day-icon">🦾</div>
+      <div class="day-info"><div class="day-name">MARDI — DOS + BICEPS</div><div class="day-sub">Muscles qui se tirent ensemble</div></div>
+    </div>
+    <div class="day-body open" style="display:block;">
+      <div style="font-size:0.82rem;color:#444;line-height:1.6;">Tous les exercices de dos (tirage, rowing) sollicitent déjà tes biceps. Autant finir les biceps après le dos — ils sont déjà chauds.</div>
+    </div>
+  </div>
+
+  <div class="day-card">
+    <div class="day-head recup-day" style="cursor:default;">
+      <div class="day-icon">🔥</div>
+      <div class="day-info"><div class="day-name">MERCREDI — RÉCUP ACTIVE</div><div class="day-sub">Sauna + Hammam + Stretching</div></div>
+    </div>
+    <div class="day-body open" style="display:block;">
+      <div style="font-size:0.82rem;color:#444;line-height:1.6;">Après 2 jours de sport, tes muscles ont besoin de récupérer. Le sauna et le hammam accélèrent la récupération — pas de repos passif, tu utilises les équipements de la salle.</div>
+    </div>
+  </div>
+
+  <div class="day-card">
+    <div class="day-head sport-day" style="cursor:default;">
+      <div class="day-icon">💪</div>
+      <div class="day-info"><div class="day-name">JEUDI — ÉPAULES + AVANT-BRAS + POIGNETS</div><div class="day-sub">Muscles isolés — ta priorité</div></div>
+    </div>
+    <div class="day-body open" style="display:block;">
+      <div style="font-size:0.82rem;color:#444;line-height:1.6;">Les épaules ne travaillent pas avec les autres groupes. Ce jour est dédié à ta priorité : épaules larges, avant-bras développés, poignets plus forts.</div>
+    </div>
+  </div>
+
+  <div class="day-card">
+    <div class="day-head sport-day" style="cursor:default;">
+      <div class="day-icon">🦵</div>
+      <div class="day-info"><div class="day-name">VENDREDI — JAMBES + ABDOS</div><div class="day-sub">Muscles du bas — fondation du corps</div></div>
+    </div>
+    <div class="day-body open" style="display:block;">
+      <div style="font-size:0.82rem;color:#444;line-height:1.6;">Les jambes libèrent de la testostérone qui aide TOUT le corps à pousser. Tu n'en feras pas beaucoup mais c'est indispensable. Les abdos se font en fin de séance.</div>
+    </div>
+  </div>
+
+  <div class="day-card">
+    <div class="day-head actif-day" style="cursor:default;">
+      <div class="day-icon">🏊</div>
+      <div class="day-info"><div class="day-name">SAMEDI — PISCINE + JACUZZI</div><div class="day-sub">Récupération complète du corps</div></div>
+    </div>
+    <div class="day-body open" style="display:block;">
+      <div style="font-size:0.82rem;color:#444;line-height:1.6;">La natation est le meilleur cardio sans impact. Elle travaille les épaules, le dos ET récupère les muscles. Le jacuzzi détend tout. Tu ressors en meilleure forme que tu es rentré.</div>
+    </div>
+  </div>
+
+  <div class="day-card">
+    <div class="day-head repos-day" style="cursor:default;">
+      <div class="day-icon">😴</div>
+      <div class="day-info"><div class="day-name">DIMANCHE — REPOS COMPLET</div><div class="day-sub">Marche + sommeil + recharge</div></div>
+    </div>
+    <div class="day-body open" style="display:block;">
+      <div style="font-size:0.82rem;color:#444;line-height:1.6;">Pas de salle. Une marche de 30 min maximum si tu veux bouger. Le muscle se construit pendant le repos — ne saute jamais ce jour.</div>
+    </div>
+  </div>
+
+  <div class="stats3">
+    <div class="sbox"><div class="sval">4</div><div class="slbl">Séances muscu/sem</div></div>
+    <div class="sbox"><div class="sval">7</div><div class="slbl">Jours actifs/sem</div></div>
+    <div class="sbox"><div class="sval">12</div><div class="slbl">Semaines totales</div></div>
+  </div>
+</div>
+
+<!-- ==================== MOIS 1 ==================== -->
+<div class="section" id="mois1">
+  <div class="sec-title">MOIS 1</div>
+  <div class="sec-sub">Semaines 1 à 4 · Apprentissage des mouvements</div>
+  <div class="phase-badge ph1">⭐ PHASE 1 — FONDATIONS</div>
+
+  <div class="icard"><div class="it">🎯 OBJECTIF DU MOIS</div><div class="ib">Apprendre les bons gestes. Poids légers. Descente toujours 3 secondes. Ne pas se blesser. À la fin du mois tu dois sentir chaque muscle que tu travailles.</div></div>
+
+  <div style="font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:2px;color:var(--white);margin:14px 0 10px;">LUNDI — PECS + TRICEPS</div>
+  <div class="day-card">
+    <div class="day-head sport-day" onclick="toggleDay(this)">
+      <div class="day-icon">💪</div>
+      <div class="day-info"><div class="day-name">SÉANCE A — PECS + TRICEPS</div><div class="day-sub">~60 min · Semaines 1-4</div></div>
+      <div class="day-tag tag-sport">SPORT</div>
+      <div class="day-arrow">▼</div>
+    </div>
+    <div class="day-body">
+      <div class="ex-card-full">
+        <div class="ex-card-header">
+          <div class="ex-dot dot-pec"></div>
+          <div style="flex:1"><div class="ex-row-name">Développé couché haltères</div><div class="ex-row-muscle">Pectoraux entiers</div></div>
+          <div class="ex-row-sets">4×10 · 90s</div>
+        </div>
+        <div class="ex-card-imgs">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Bench_press_1.svg/200px-Bench_press_1.svg.png" alt="Développé couché" onerror="this.style.display='none'">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/52/Bench_press_2.svg/200px-Bench_press_2.svg.png" alt="Développé couché 2" onerror="this.style.display='none'">
+        </div>
+        <a href="https://musclewiki.com/exercise/dumbbell-bench-press" target="_blank" class="ex-wiki-btn">👁 Voir le muscle activé →</a>
+      </div>
+
+      <div class="ex-card-full">
+        <div class="ex-card-header">
+          <div class="ex-dot dot-pec"></div>
+          <div style="flex:1"><div class="ex-row-name">Chest press machine</div><div class="ex-row-muscle">Pectoraux + guidé</div></div>
+          <div class="ex-row-sets">3×12 · 60s</div>
+        </div>
+        <a href="https://musclewiki.com/exercise/machine-chest-press" target="_blank" class="ex-wiki-btn">👁 Voir le muscle activé →</a>
+      </div>
+
+      <div class="ex-card-full">
+        <div class="ex-card-header">
+          <div class="ex-dot dot-pec"></div>
+          <div style="flex:1"><div class="ex-row-name">Pec deck butterfly</div><div class="ex-row-muscle">Pectoraux intérieurs</div></div>
+          <div class="ex-row-sets">3×12 · 60s</div>
+        </div>
+        <a href="https://musclewiki.com/exercise/pec-deck-fly" target="_blank" class="ex-wiki-btn">👁 Voir le muscle activé →</a>
+      </div>
+
+      <div class="ex-card-full">
+        <div class="ex-card-header">
+          <div class="ex-dot dot-tri"></div>
+          <div style="flex:1"><div class="ex-row-name">Extension triceps poulie (corde)</div><div class="ex-row-muscle">Triceps 3 chefs</div></div>
+          <div class="ex-row-sets">3×12 · 60s</div>
+        </div>
+        <a href="https://musclewiki.com/exercise/cable-tricep-pushdown-rope" target="_blank" class="ex-wiki-btn">👁 Voir le muscle activé →</a>
+      </div>
+
+      <div class="ex-card-full">
+        <div class="ex-card-header">
+          <div class="ex-dot dot-tri"></div>
+          <div style="flex:1"><div class="ex-row-name">Dips machine assistée</div><div class="ex-row-muscle">Triceps + bas pecs</div></div>
+          <div class="ex-row-sets">3×10 · 60s</div>
+        </div>
+        <a href="https://musclewiki.com/exercise/machine-assisted-dip" target="_blank" class="ex-wiki-btn">👁 Voir le muscle activé →</a>
+      </div>
+
+      <div style="margin-top:10px;font-size:0.78rem;color:var(--grey);">🔑 Mois 1 : poids où tu fais 12 reps proprement. Si trop facile → +2,5kg la semaine suivante.</div>
+    </div>
+  </div>
+
+  <div style="font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:2px;color:var(--white);margin:14px 0 10px;">MARDI — DOS + BICEPS</div>
+  <div class="day-card">
+    <div class="day-head sport-day" onclick="toggleDay(this)">
+      <div class="day-icon">🦾</div>
+      <div class="day-info"><div class="day-name">SÉANCE B — DOS + BICEPS</div><div class="day-sub">~65 min · Semaines 1-4</div></div>
+      <div class="day-tag tag-sport">SPORT</div>
+      <div class="day-arrow">▼</div>
+    </div>
+    <div class="day-body">
+      <div class="ex-card-full">
+        <div class="ex-card-header">
+          <div class="ex-dot dot-dos"></div>
+          <div style="flex:1"><div class="ex-row-name">Tirage poulie haute (prise large)</div><div class="ex-row-muscle">Grand dorsal — le V du dos</div></div>
+          <div class="ex-row-sets">4×10 · 90s</div>
+        </div>
+        <a href="https://musclewiki.com/exercise/machine-pulldown" target="_blank" class="ex-wiki-btn">👁 Voir le muscle activé →</a>
+      </div>
+
+      <div class="ex-card-full">
+        <div class="ex-card-header">
+          <div class="ex-dot dot-dos"></div>
+          <div style="flex:1"><div class="ex-row-name">Rowing câble assis</div><div class="ex-row-muscle">Dos milieu + biceps</div></div>
+          <div class="ex-row-sets">4×10 · 60s</div>
+        </div>
+        <a href="https://musclewiki.com/exercise/cable-seated-row" target="_blank" class="ex-wiki-btn">👁 Voir le muscle activé →</a>
+      </div>
+
+      <div class="ex-card-full">
+        <div class="ex-card-header">
+          <div class="ex-dot dot-dos"></div>
+          <div style="flex:1"><div class="ex-row-name">Rowing haltère unilatéral</div><div class="ex-row-muscle">Dos + biceps</div></div>
+          <div class="ex-row-sets">3×10 · 60s</div>
+        </div>
+        <a href="https://musclewiki.com/exercise/dumbbell-row" target="_blank" class="ex-wiki-btn">👁 Voir le muscle activé →</a>
+      </div>
+
+      <div class="ex-card-full">
+        <div class="ex-card-header">
+          <div class="ex-dot dot-bic"></div>
+          <div style="flex:1"><div class="ex-row-name">Curl haltères alterné</div><div class="ex-row-muscle">Biceps — la bosse</div></div>
+          <div class="ex-row-sets">4×10 · 60s</div>
+        </div>
+        <a href="https://musclewiki.com/exercise/dumbbell-curl" target="_blank" class="ex-wiki-btn">👁 Voir le muscle activé →</a>
+      </div>
+
+      <div class="ex-card-full">
+        <div class="ex-card-header">
+          <div class="ex-dot dot-bic"></div>
+          <div style="flex:1"><div class="ex-row-name">Curl marteau</div><div class="ex-row-muscle">Biceps long + avant-bras</div></div>
+          <div class="ex-row-sets">3×12 · 60s</div>
+        </div>
+        <a href="https://musclewiki.com/exercise/hammer-curl" target="_blank" class="ex-wiki-btn">👁 Voir le muscle activé →</a>
+      </div>
+    </div>
+
+  <div style="font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:2px;color:var(--white);margin:14px 0 10px;">MERCREDI — RÉCUP ACTIVE</div>
+  <div class="day-card">
+    <div class="day-head recup-day" onclick="toggleDay(this)">
+      <div class="day-icon">🔥</div>
+      <div class="day-info"><div class="day-name">RÉCUPÉRATION — SAUNA & HAMMAM</div><div class="day-sub">Muscles qui se réparent · obligatoire</div></div>
+      <div class="day-tag tag-recup">RÉCUP</div>
+      <div class="day-arrow">▼</div>
+    </div>
+    <div class="day-body">
+      <div class="act-row"><div class="act-icon">🚴</div><div class="act-info"><div class="act-name">Vélo elliptique léger</div><div class="act-why">Activation circulation sanguine · pace douce</div></div><div class="act-time">20 min</div></div>
+      <div class="act-row"><div class="act-icon">🧘</div><div class="act-info"><div class="act-name">Étirements complets</div><div class="act-why">Pecs · dos · biceps · épaules · 30s chaque</div></div><div class="act-time">20 min</div></div>
+      <div class="act-row"><div class="act-icon">🔥</div><div class="act-info"><div class="act-name">Sauna</div><div class="act-why">Élimine les toxines · détend les fibres musculaires</div></div><div class="act-time">20 min</div></div>
+      <div class="act-row"><div class="act-icon">💨</div><div class="act-info"><div class="act-name">Hammam</div><div class="act-why">Décongestionne les muscles · ouvre les pores</div></div><div class="act-time">15 min</div></div>
+      <div class="act-row"><div class="act-icon">🚿</div><div class="act-info"><div class="act-name">Douche froide</div><div class="act-why">Réduit l'inflammation · boost circulation</div></div><div class="act-time">2 min</div></div>
+    </div>
+  </div>
+
+  <div style="font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:2px;color:var(--white);margin:14px 0 10px;">JEUDI — ÉPAULES + AVANT-BRAS</div>
+  <div class="day-card">
+    <div class="day-head sport-day" onclick="toggleDay(this)">
+      <div class="day-icon">🏋️</div>
+      <div class="day-info"><div class="day-name">SÉANCE C — ÉPAULES + AVANT-BRAS</div><div class="day-sub">~60 min · Ta priorité</div></div>
+      <div class="day-tag tag-sport">SPORT</div>
+      <div class="day-arrow">▼</div>
+    </div>
+    <div class="day-body">
+      <div class="ex-row"><div class="ex-dot dot-ep"></div><div style="flex:1"><div class="ex-row-name">Développé militaire haltères assis</div><div class="ex-row-muscle">Deltoïdes complets</div></div><div class="ex-row-sets">4×10 · 90s</div></div>
+      <div class="ex-row"><div class="ex-dot dot-ep"></div><div style="flex:1"><div class="ex-row-name">Élévations latérales</div><div class="ex-row-muscle">Deltoïdes latéraux — largeur</div></div><div class="ex-row-sets">4×12 · 60s</div></div>
+      <div class="ex-row"><div class="ex-dot dot-ep"></div><div style="flex:1"><div class="ex-row-name">Élévations frontales</div><div class="ex-row-muscle">Deltoïdes antérieurs</div></div><div class="ex-row-sets">3×12 · 60s</div></div>
+      <div class="ex-row"><div class="ex-dot dot-ep"></div><div style="flex:1"><div class="ex-row-name">Face pulls câble</div><div class="ex-row-muscle">Deltoïdes arrière + trapèzes</div></div><div class="ex-row-sets">3×15 · 60s</div></div>
+      <div class="ex-row"><div class="ex-dot dot-bic"></div><div style="flex:1"><div class="ex-row-name">Curl poignets haltères (avant-bras)</div><div class="ex-row-muscle">Avant-bras + poignets</div></div><div class="ex-row-sets">4×15 · 45s</div></div>
+      <div class="ex-row"><div class="ex-dot dot-bic"></div><div style="flex:1"><div class="ex-row-name">Reverse curl (prise inversée)</div><div class="ex-row-muscle">Avant-bras extenseurs</div></div><div class="ex-row-sets">3×12 · 45s</div></div>
+    </div>
+  </div>
+
+  <div style="font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:2px;color:var(--white);margin:14px 0 10px;">VENDREDI — JAMBES + ABDOS</div>
+  <div class="day-card">
+    <div class="day-head sport-day" onclick="toggleDay(this)">
+      <div class="day-icon">🦵</div>
+      <div class="day-info"><div class="day-name">SÉANCE D — JAMBES + ABDOS</div><div class="day-sub">~55 min · Fondation du corps</div></div>
+      <div class="day-tag tag-sport">SPORT</div>
+      <div class="day-arrow">▼</div>
+    </div>
+    <div class="day-body">
+      <div class="ex-row"><div class="ex-dot dot-jam"></div><div style="flex:1"><div class="ex-row-name">Leg press machine</div><div class="ex-row-muscle">Quadriceps + fessiers</div></div><div class="ex-row-sets">4×12 · 90s</div></div>
+      <div class="ex-row"><div class="ex-dot dot-jam"></div><div style="flex:1"><div class="ex-row-name">Leg curl couché (ischio)</div><div class="ex-row-muscle">Ischio-jambiers</div></div><div class="ex-row-sets">3×12 · 60s</div></div>
+      <div class="ex-row"><div class="ex-dot dot-jam"></div><div style="flex:1"><div class="ex-row-name">Extension mollets debout</div><div class="ex-row-muscle">Mollets</div></div><div class="ex-row-sets">4×15 · 45s</div></div>
+      <div class="ex-row"><div class="ex-dot dot-abs"></div><div style="flex:1"><div class="ex-row-name">Crunch machine</div><div class="ex-row-muscle">Abdominaux</div></div><div class="ex-row-sets">3×15 · 45s</div></div>
+      <div class="ex-row"><div class="ex-dot dot-abs"></div><div style="flex:1"><div class="ex-row-name">Planche (gainage)</div><div class="ex-row-muscle">Abdos profonds + stabilité</div></div><div class="ex-row-sets">3×40s · 45s</div></div>
+      <div class="ex-row"><div class="ex-dot dot-abs"></div><div style="flex:1"><div class="ex-row-name">Relevés de jambes suspendu</div><div class="ex-row-muscle">Abdos bas</div></div><div class="ex-row-sets">3×12 · 45s</div></div>
+    </div>
+  </div>
+
+  <div style="font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:2px;color:var(--white);margin:14px 0 10px;">SAMEDI — PISCINE</div>
+  <div class="day-card">
+    <div class="day-head actif-day" onclick="toggleDay(this)">
+      <div class="day-icon">🏊</div>
+      <div class="day-info"><div class="day-name">RÉCUP COMPLÈTE — PISCINE</div><div class="day-sub">Natation + Jacuzzi + Sauna</div></div>
+      <div class="day-tag tag-actif">ACTIF</div>
+      <div class="day-arrow">▼</div>
+    </div>
+    <div class="day-body">
+      <div class="act-row"><div class="act-icon">🏊</div><div class="act-info"><div class="act-name">Natation douce</div><div class="act-why">Crawl ou dos · objectif 25-30 min · si tu fais plus c'est bonus</div></div><div class="act-time">25-30 min</div></div>
+      <div class="act-row"><div class="act-icon">🌊</div><div class="act-info"><div class="act-name">Jacuzzi</div><div class="act-why">Bulles sur les muscles · détente profonde</div></div><div class="act-time">20 min</div></div>
+      <div class="act-row"><div class="act-icon">🔥</div><div class="act-info"><div class="act-name">Sauna</div><div class="act-why">Finition récup · purification</div></div><div class="act-time">20 min</div></div>
+      <div class="act-row"><div class="act-icon">💨</div><div class="act-info"><div class="act-name">Hammam</div><div class="act-why">Peau + muscles · décrassage hebdomadaire</div></div><div class="act-time">15 min</div></div>
+    </div>
+  </div>
+
+  <div style="font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:2px;color:var(--white);margin:14px 0 10px;">DIMANCHE — REPOS</div>
+  <div class="day-card">
+    <div class="day-head repos-day" style="cursor:default;">
+      <div class="day-icon">😴</div>
+      <div class="day-info"><div class="day-name">REPOS COMPLET</div><div class="day-sub">Le muscle pousse aujourd'hui</div></div>
+      <div class="day-tag tag-repos">REPOS</div>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== MOIS 2 ==================== -->
+<div class="section" id="mois2">
+  <div class="sec-title">MOIS 2</div>
+  <div class="sec-sub">Semaines 5 à 8 · Intensification</div>
+  <div class="phase-badge ph2">🔥 PHASE 2 — INTENSIFICATION</div>
+
+  <div class="icard"><div class="it">🎯 OBJECTIF DU MOIS</div><div class="ib">Augmenter les charges. Ajouter des séries. Tu dois sentir une vraie différence dans le miroir. La descente reste 3 secondes — toujours.</div></div>
+
+  <div class="day-card">
+    <div class="day-head sport-day" onclick="toggleDay(this)">
+      <div class="day-icon">💪</div>
+      <div class="day-info"><div class="day-name">LUNDI — PECS + TRICEPS</div><div class="day-sub">Séance A intensifiée · ~70 min</div></div>
+      <div class="day-tag tag-sport">SPORT</div>
+      <div class="day-arrow">▼</div>
+    </div>
+    <div class="day-body">
+      <div class="ex-row"><div class="ex-dot dot-pec"></div><div style="flex:1"><div class="ex-row-name">Développé couché haltères</div><div class="ex-row-muscle">Pectoraux entiers</div></div><div class="ex-row-sets">5×10 · 90s</div></div>
+      <div class="ex-row"><div class="ex-dot dot-pec"></div><div style="flex:1"><div class="ex-row-name">Développé incliné haltères ⭐ NOUVEAU</div><div class="ex-row-muscle">Pectoraux hauts</div></div><div class="ex-row-sets">4×10 · 60s</div></div>
+      <div class="ex-row"><div class="ex-dot dot-pec"></div><div style="flex:1"><div class="ex-row-name">Chest press machine (+2,5kg)</div><div class="ex-row-muscle">Pectoraux + guidé</div></div><div class="ex-row-sets">4×12 · 60s</div></div>
+      <div class="ex-row"><div class="ex-dot dot-pec"></div><div style="flex:1"><div class="ex-row-name">Pec deck butterfly</div><div class="ex-row-muscle">Pectoraux intérieurs</div></div><div class="ex-row-sets">3×12 · 60s</div></div>
+      <div class="ex-row"><div class="ex-dot dot-tri"></div><div style="flex:1"><div class="ex-row-name">Extension triceps poulie</div><div class="ex-row-muscle">Triceps 3 chefs</div></div><div class="ex-row-sets">4×12 · 60s</div></div>
+      <div class="ex-row"><div class="ex-dot dot-tri"></div><div style="flex:1"><div class="ex-row-name">Dips poids du corps ⭐ NOUVEAU</div><div class="ex-row-muscle">Triceps + bas pecs</div></div><div class="ex-row-sets">3×max · 60s</div></div>
+      <a href="https://musclewiki.com/exercise/dumbbell-incline-bench-press" target="_blank" class="ex-wiki-btn">👁 Voir développé incliné →</a>
+    </div>
+  </div>
+
+  <div class="day-card">
+    <div class="day-head sport-day" onclick="toggleDay(this)">
+      <div class="day-icon">🦾</div>
+      <div class="day-info"><div class="day-name">MARDI — DOS + BICEPS</div><div class="day-sub">Séance B intensifiée · ~70 min</div></div>
+      <div class="day-tag tag-sport">SPORT</div>
+      <div class="day-arrow">▼</div>
+    </div>
+    <div class="day-body">
+      <div class="ex-row"><div class="ex-dot dot-dos"></div><div style="flex:1"><div class="ex-row-name">Tirage poulie haute (prise large)</div><div class="ex-row-muscle">Grand dorsal</div></div><div class="ex-row-sets">5×10 · 90s</div></div>
+      <div class="ex-row"><div class="ex-dot dot-dos"></div><div style="flex:1"><div class="ex-row-name">Pull-over haltère ⭐ NOUVEAU</div><div class="ex-row-muscle">Dos + cage thoracique</div></div><div class="ex-row-sets">4×12 · 60s</div></div>
+      <div class="ex-row"><div class="ex-dot dot-dos"></div><div style="flex:1"><div class="ex-row-name">Rowing câble assis</div><div class="ex-row-muscle">Dos milieu + biceps</div></div><div class="ex-row-sets">4×10 · 60s</div></div>
+      <div class="ex-row"><div class="ex-dot dot-dos"></div><div style="flex:1"><div class="ex-row-name">Rowing haltère unilatéral</div><div class="ex-row-muscle">Dos + biceps</div></div><div class="ex-row-sets">3×10 · 60s</div></div>
+      <div class="ex-row"><div class="ex-dot dot-bic"></div><div style="flex:1"><div class="ex-row-name">Curl barre droite ⭐ NOUVEAU</div><div class="ex-row-muscle">Biceps — charge maximale</div></div><div class="ex-row-sets">4×10 · 60s</div></div>
+      <div class="ex-row"><div class="ex-dot dot-bic"></div><div style="flex:1"><div class="ex-row-name">Curl marteau</div><div class="ex-row-muscle">Biceps long + avant-bras</div></div><div class="ex-row-sets">3×12 · 60s</div></div>
+      <a href="https://musclewiki.com/exercise/dumbbell-pullover" target="_blank" class="ex-wiki-btn">👁 Voir pull-over haltère →</a>
+    </div>
+  </div>
+
+  <div class="day-card">
+    <div class="day-head sport-day" onclick="toggleDay(this)">
+      <div class="day-icon">🏋️</div>
+      <div class="day-info"><div class="day-name">JEUDI — ÉPAULES + AVANT-BRAS</div><div class="day-sub">Séance C intensifiée · ~65 min</div></div>
+      <div class="day-tag tag-sport">SPORT</div>
+      <div class="day-arrow">▼</div>
+    </div>
+    <div class="day-body">
+      <div class="ex-row"><div class="ex-dot dot-ep"></div><div style="flex:1"><div class="ex-row-name">Développé militaire haltères</div><div class="ex-row-muscle">Deltoïdes complets</div></div><div class="ex-row-sets">5×10 · 90s</div></div>
+      <div class="ex-row"><div class="ex-dot dot-ep"></div><div style="flex:1"><div class="ex-row-name">Upright row ⭐ NOUVEAU</div><div class="ex-row-muscle">Trapèzes + deltoïdes</div></div><div class="ex-row-sets">4×12 · 60s</div></div>
+      <div class="ex-row"><div class="ex-dot dot-ep"></div><div style="flex:1"><div class="ex-row-name">Élévations latérales</div><div class="ex-row-muscle">Deltoïdes latéraux</div></div><div class="ex-row-sets">4×12 · 60s</div></div>
+      <div class="ex-row"><div class="ex-dot dot-ep"></div><div style="flex:1"><div class="ex-row-name">Élévations frontales</div><div class="ex-row-muscle">Deltoïdes antérieurs</div></div><div class="ex-row-sets">3×12 · 60s</div></div>
+      <div class="ex-row"><div class="ex-dot dot-bic"></div><div style="flex:1"><div class="ex-row-name">Curl poignets × 2 séries</div><div class="ex-row-muscle">Avant-bras + poignets</div></div><div class="ex-row-sets">4×15 · 45s</div></div>
+      <div class="ex-row"><div class="ex-dot dot-bic"></div><div style="flex:1"><div class="ex-row-name">Farmer walk ⭐ NOUVEAU</div><div class="ex-row-muscle">Poignets + grip + avant-bras</div></div><div class="ex-row-sets">4×30m · 60s</div></div>
+      <a href="https://musclewiki.com/exercise/barbell-upright-row" target="_blank" class="ex-wiki-btn">👁 Voir upright row →</a>
+    </div>
+  </div>
+
+  <div class="day-card">
+    <div class="day-head sport-day" onclick="toggleDay(this)">
+      <div class="day-icon">🦵</div>
+      <div class="day-info"><div class="day-name">VENDREDI — JAMBES + ABDOS</div><div class="day-sub">Séance D intensifiée · ~60 min</div></div>
+      <div class="day-tag tag-sport">SPORT</div>
+      <div class="day-arrow">▼</div>
+    </div>
+    <div class="day-body">
+      <div class="ex-row"><div class="ex-dot dot-jam"></div><div style="flex:1"><div class="ex-row-name">Squat guidé Smith machine ⭐ NOUVEAU</div><div class="ex-row-muscle">Quadriceps + fessiers</div></div><div class="ex-row-sets">4×12 · 90s</div></div>
+      <div class="ex-row"><div class="ex-dot dot-jam"></div><div style="flex:1"><div class="ex-row-name">Leg curl couché</div><div class="ex-row-muscle">Ischio-jambiers</div></div><div class="ex-row-sets">4×12 · 60s</div></div>
+      <div class="ex-row"><div class="ex-dot dot-jam"></div><div style="flex:1"><div class="ex-row-name">Extension mollets debout</div><div class="ex-row-muscle">Mollets</div></div><div class="ex-row-sets">4×15 · 45s</div></div>
+      <div class="ex-row"><div class="ex-dot dot-abs"></div><div style="flex:1"><div class="ex-row-name">Crunch câble ⭐ NOUVEAU</div><div class="ex-row-muscle">Abdominaux</div></div><div class="ex-row-sets">4×15 · 45s</div></div>
+      <div class="ex-row"><div class="ex-dot dot-abs"></div><div style="flex:1"><div class="ex-row-name">Planche gainage</div><div class="ex-row-muscle">Abdos profonds</div></div><div class="ex-row-sets">3×45s · 45s</div></div>
+      <div class="ex-row"><div class="ex-dot dot-abs"></div><div style="flex:1"><div class="ex-row-name">Relevés de jambes suspendu</div><div class="ex-row-muscle">Abdos bas</div></div><div class="ex-row-sets">3×12 · 45s</div></div>
+    </div>
+  </div>
+
+  <div style="background:#fdf5f4;border:1px solid #e8c4be;border-radius:16px;padding:15px;margin-top:12px;">
+    <div style="font-weight:800;font-size:0.9rem;color:#c0392b;margin-bottom:10px;">✅ SIGNES QUE TU PROGRESSES BIEN</div>
+    <div style="font-size:0.82rem;color:#555;line-height:1.8;">
+      • Tu vois une différence dans le miroir (épaules + larges)<br>
+      • Tes vêtements commencent à être plus serrés aux épaules<br>
+      • Tu soulèves +5 à +10kg vs le début du Mois 1<br>
+      • Tu te sens plus fort dans ta vie quotidienne<br>
+      • Ton shaker post-séance est devenu un réflexe automatique
+    </div>
+  </div>
+</div>
+
+<!-- ==================== MOIS 3 ==================== -->
+<div class="section" id="mois3">
+  <div class="sec-title">MOIS 3</div>
+  <div class="sec-sub">Semaines 9 à 12 · Consolidation</div>
+  <div class="phase-badge ph3">🚀 PHASE 3 — CONSOLIDATION</div>
+
+  <div class="icard"><div class="it">🎯 OBJECTIF DU MOIS</div><div class="ib">Consolider les gains. Techniques avancées. À la fin de ce mois tu as une vraie base musculaire visible. C'est ici que tu vois vraiment la transformation.</div></div>
+
+  <div class="day-card">
+    <div class="day-head sport-day" onclick="toggleDay(this)">
+      <div class="day-icon">💪</div>
+      <div class="day-info"><div class="day-name">LUNDI — PECS + TRICEPS</div><div class="day-sub">Séance A avancée · ~75 min</div></div>
+      <div class="day-tag tag-sport">SPORT</div>
+      <div class="day-arrow">▼</div>
+    </div>
+    <div class="day-body">
+      <div class="ex-row"><div class="ex-dot dot-pec"></div><div style="flex:1"><div class="ex-row-name">Développé couché haltères</div><div class="ex-row-muscle">Pectoraux entiers</div></div><div class="ex-row-sets">6×10 · 90s</div></div>
+      <div class="ex-row"><div class="ex-dot dot-pec"></div><div style="flex:1"><div class="ex-row-name">Développé incliné haltères</div><div class="ex-row-muscle">Pectoraux hauts</div></div><div class="ex-row-sets">4×10 · 60s</div></div>
+      <div class="ex-row"><div class="ex-dot dot-pec"></div><div style="flex:1"><div class="ex-row-name">Cable crossover ⭐ NOUVEAU</div><div class="ex-row-muscle">Pectoraux intérieurs — définition</div></div><div class="ex-row-sets">4×12 · 60s</div></div>
+      <div class="ex-row"><div class="ex-dot dot-tri"></div><div style="flex:1"><div class="ex-row-name">Extension triceps + DROP SET</div><div class="ex-row-muscle">Triceps — intensité maximale</div></div><div class="ex-row-sets">3×12 + drop</div></div>
+      <div class="ex-row"><div class="ex-dot dot-tri"></div><div style="flex:1"><div class="ex-row-name">SUPERSET : Curl marteau + Ext. triceps</div><div class="ex-row-muscle">Bras complets enchaînés</div></div><div class="ex-row-sets">3×12 · 0s</div></div>
+      <a href="https://musclewiki.com/exercise/cable-crossover" target="_blank" class="ex-wiki-btn">👁 Voir cable crossover →</a>
+    </div>
+  </div>
+
+  <div class="day-card">
+    <div class="day-head sport-day" onclick="toggleDay(this)">
+      <div class="day-icon">🦾</div>
+      <div class="day-info"><div class="day-name">MARDI — DOS + BICEPS</div><div class="day-sub">Séance B avancée · ~75 min</div></div>
+      <div class="day-tag tag-sport">SPORT</div>
+      <div class="day-arrow">▼</div>
+    </div>
+    <div class="day-body">
+      <div class="ex-row"><div class="ex-dot dot-dos"></div><div style="flex:1"><div class="ex-row-name">Tirage poulie haute + DROP SET</div><div class="ex-row-muscle">Grand dorsal</div></div><div class="ex-row-sets">5×10 + drop</div></div>
+      <div class="ex-row"><div class="ex-dot dot-dos"></div><div style="flex:1"><div class="ex-row-name">Tirage prise neutre ⭐ NOUVEAU</div><div class="ex-row-muscle">Épaisseur du dos</div></div><div class="ex-row-sets">4×10 · 60s</div></div>
+      <div class="ex-row"><div class="ex-dot dot-dos"></div><div style="flex:1"><div class="ex-row-name">Rowing câble assis</div><div class="ex-row-muscle">Dos milieu + biceps</div></div><div class="ex-row-sets">4×10 · 60s</div></div>
+      <div class="ex-row"><div class="ex-dot dot-bic"></div><div style="flex:1"><div class="ex-row-name">SUPERSET : Curl barre + Curl concentré</div><div class="ex-row-muscle">Biceps — volume maximal</div></div><div class="ex-row-sets">4×10 · 0s</div></div>
+      <div class="ex-row"><div class="ex-dot dot-bic"></div><div style="flex:1"><div class="ex-row-name">Curl marteau</div><div class="ex-row-muscle">Biceps long + avant-bras</div></div><div class="ex-row-sets">3×12 · 60s</div></div>
+      <a href="https://musclewiki.com/exercise/cable-neutral-grip-pulldown" target="_blank" class="ex-wiki-btn">👁 Voir tirage prise neutre →</a>
+    </div>
+  </div>
+
+  <div class="day-card">
+    <div class="day-head sport-day" onclick="toggleDay(this)">
+      <div class="day-icon">🏋️</div>
+      <div class="day-info"><div class="day-name">JEUDI — ÉPAULES + AVANT-BRAS</div><div class="day-sub">Séance C avancée · ~70 min</div></div>
+      <div class="day-tag tag-sport">SPORT</div>
+      <div class="day-arrow">▼</div>
+    </div>
+    <div class="day-body">
+      <div class="ex-row"><div class="ex-dot dot-ep"></div><div style="flex:1"><div class="ex-row-name">Arnold press ⭐ NOUVEAU</div><div class="ex-row-muscle">Épaules complètes — rotation</div></div><div class="ex-row-sets">4×10 · 90s</div></div>
+      <div class="ex-row"><div class="ex-dot dot-ep"></div><div style="flex:1"><div class="ex-row-name">SUPERSET : Élév. latérales + frontales</div><div class="ex-row-muscle">Deltoïdes latéraux + antérieurs</div></div><div class="ex-row-sets">4×12 · 0s</div></div>
+      <div class="ex-row"><div class="ex-dot dot-ep"></div><div style="flex:1"><div class="ex-row-name">Upright row</div><div class="ex-row-muscle">Trapèzes + deltoïdes</div></div><div class="ex-row-sets">3×12 · 60s</div></div>
+      <div class="ex-row"><div class="ex-dot dot-bic"></div><div style="flex:1"><div class="ex-row-name">Farmer walk lourd</div><div class="ex-row-muscle">Poignets + grip</div></div><div class="ex-row-sets">4×40m · 60s</div></div>
+      <div class="ex-row"><div class="ex-dot dot-bic"></div><div style="flex:1"><div class="ex-row-name">Pinch grip disques ⭐ NOUVEAU</div><div class="ex-row-muscle">Doigts + poignets</div></div><div class="ex-row-sets">3×30s · 45s</div></div>
+      <a href="https://musclewiki.com/exercise/dumbbell-arnold-press" target="_blank" class="ex-wiki-btn">👁 Voir Arnold press →</a>
+    </div>
+  </div>
+
+  <div class="day-card">
+    <div class="day-head sport-day" onclick="toggleDay(this)">
+      <div class="day-icon">🦵</div>
+      <div class="day-info"><div class="day-name">VENDREDI — JAMBES + ABDOS</div><div class="day-sub">Séance D avancée · ~65 min</div></div>
+      <div class="day-tag tag-sport">SPORT</div>
+      <div class="day-arrow">▼</div>
+    </div>
+    <div class="day-body">
+      <div class="ex-row"><div class="ex-dot dot-jam"></div><div style="flex:1"><div class="ex-row-name">Squat guidé Smith machine</div><div class="ex-row-muscle">Quadriceps + fessiers</div></div><div class="ex-row-sets">5×12 · 90s</div></div>
+      <div class="ex-row"><div class="ex-dot dot-jam"></div><div style="flex:1"><div class="ex-row-name">Fentes marchées ⭐ NOUVEAU</div><div class="ex-row-muscle">Quadriceps + fessiers + équilibre</div></div><div class="ex-row-sets">4×12 · 60s</div></div>
+      <div class="ex-row"><div class="ex-dot dot-jam"></div><div style="flex:1"><div class="ex-row-name">Leg press + DROP SET</div><div class="ex-row-muscle">Quadriceps — intensité max</div></div><div class="ex-row-sets">3×12 + drop</div></div>
+      <div class="ex-row"><div class="ex-dot dot-abs"></div><div style="flex:1"><div class="ex-row-name">CIRCUIT : Planche + Relevés + Crunch câble</div><div class="ex-row-muscle">Abdos complets enchaînés</div></div><div class="ex-row-sets">3 tours · 0s</div></div>
+    </div>
+  </div>
+
+  <div style="background:linear-gradient(135deg,#fdf5f4,#faeae8);border:1px solid #e8c4be;border-radius:16px;padding:18px;margin-top:14px;">
+    <div style="font-weight:800;font-size:1rem;color:#c0392b;margin-bottom:12px;">🏆 FIN DES 3 MOIS — CE QUE TU AURAS ACCOMPLI</div>
+    <div style="font-size:0.84rem;color:#444;line-height:2;">
+      💪 +4 à +8kg de masse musculaire<br>
+      👕 Épaules nettement plus larges et plus rondes<br>
+      💥 Bras plus volumineux et définis<br>
+      ✅ Pecs visibles sous le t-shirt<br>
+      🤜 Avant-bras et poignets plus forts<br>
+      🦈 Dos en V qui se dessine clairement<br>
+      🥗 Habitudes alimentaires complètement changées<br>
+      📈 Poids soulevés doublés voire triplés
+    </div>
+  </div>
+</div>
+
+<!-- ==================== JOURNÉE ==================== -->
+<div class="section" id="journee">
+  <div class="sec-title">TA JOURNÉE</div>
+  <div class="sec-sub">Travail 9h-17h · Salle vers 20h</div>
+
+  <div style="display:flex;gap:8px;margin-bottom:14px;">
+    <button onclick="showJ('sem',this)" id="btnSem" style="flex:1;padding:9px;background:#fff3ee;border:2px solid var(--orange);border-radius:9px;color:var(--orange);font-family:'Bebas Neue',sans-serif;font-size:0.85rem;letter-spacing:2px;cursor:pointer;">📅 SEMAINE</button>
+    <button onclick="showJ('we',this)" id="btnWe" style="flex:1;padding:9px;background:var(--card);border:1px solid var(--border);border-radius:9px;color:var(--grey);font-family:'Bebas Neue',sans-serif;font-size:0.85rem;letter-spacing:2px;cursor:pointer;">🏋️ WEEK-END</button>
+  </div>
+
+  <!-- RAPPEL SUCRE — change chaque semaine -->
+  <div id="sucre-reminder" style="background:#fffbee;border:2px solid var(--orange2);border-radius:12px;padding:13px;margin-bottom:14px;">
+    <div style="font-family:'Bebas Neue',sans-serif;font-size:0.95rem;letter-spacing:2px;color:var(--orange2);margin-bottom:8px;">🍵 LIPTON FRUITS DES BOIS — CETTE SEMAINE</div>
+    <div id="sucre-display" style="font-size:1.1rem;font-weight:700;color:#1a1a1a;margin-bottom:8px;">Chargement...</div>
+    <div id="sucre-barre" style="display:flex;gap:6px;margin-bottom:8px;"></div>
+    <div id="sucre-conseil" style="font-size:0.78rem;color:#444;line-height:1.5;"></div>
+    <div style="margin-top:10px;display:flex;gap:8px;">
+      <button onclick="semPrev()" style="flex:1;padding:7px;background:#ffffff;border:1px solid var(--border);border-radius:8px;color:var(--grey);font-family:'Bebas Neue',sans-serif;font-size:0.75rem;cursor:pointer;">◀ Sem. préc.</button>
+      <div id="semaine-num" style="flex:1;text-align:center;padding:7px;font-family:'Bebas Neue',sans-serif;font-size:0.85rem;color:var(--orange2);background:#ffffff;border-radius:8px;border:1px solid var(--border);">SEM 1</div>
+      <button onclick="semNext()" style="flex:1;padding:7px;background:#ffffff;border:1px solid var(--border);border-radius:8px;color:var(--grey);font-family:'Bebas Neue',sans-serif;font-size:0.75rem;cursor:pointer;">Sem. suiv. ▶</button>
+    </div>
+  </div>
+
+  <div id="j-sem">
+    <div class="tl-item"><div class="tl-time">7h30</div><div class="tl-card water"><div class="tl-icon">💧</div><div class="tl-body"><div class="tl-title">RÉVEIL</div><div class="tl-desc">Grand verre d'eau <strong>500ml</strong> immédiatement — avant tout</div></div></div></div>
+    <div class="tl-item"><div class="tl-time">8h00</div><div class="tl-card food"><div class="tl-icon">🍳</div><div class="tl-body"><div class="tl-title">PETIT-DÉJEUNER</div><div class="tl-desc"><strong>4 œufs</strong> à la poêle · <strong>80g flocons d'avoine</strong> dans du lait froid (5 min) · <strong>1 banane</strong> · <strong>Lipton fruits des bois</strong> (voir rappel sucre ci-dessus)</div><div class="tl-tip">💡 Flocons : verse lait froid sur les flocons, attends 5 min, mange. Aucune cuisson.</div></div></div></div>
+    <div class="tl-item"><div class="tl-time">9h00</div><div class="tl-card"><div class="tl-icon">💼</div><div class="tl-body"><div class="tl-title">TRAVAIL</div><div class="tl-desc">Bois de l'eau en continu · objectif 1,5L avant midi</div></div></div></div>
+    <div class="tl-item"><div class="tl-time">10h30</div><div class="tl-card food"><div class="tl-icon">🥣</div><div class="tl-body"><div class="tl-title">COLLATION BUREAU</div><div class="tl-desc"><strong>1 yaourt grec</strong> nature · <strong>1 poignée amandes</strong></div><div class="tl-tip">💡 Prépare dans ton sac le matin · mange au bureau</div></div></div></div>
+    <div class="tl-item"><div class="tl-time">12h30</div><div class="tl-card food"><div class="tl-icon">🍚</div><div class="tl-body"><div class="tl-title">DÉJEUNER</div><div class="tl-desc"><strong>200g riz</strong> + <strong>200g poulet ou thon</strong> + <strong>légumes</strong> + huile d'olive</div><div class="tl-tip">💡 Cuis le soir d'avant · tupperware · micro-ondes au bureau</div><div class="tl-tip">🐟 Thon boîte : ouvre, égoutte, mange avec le riz. Aucune cuisson.</div></div></div></div>
+    <div class="tl-item"><div class="tl-time">16h00</div><div class="tl-card food"><div class="tl-icon">🍌</div><div class="tl-body"><div class="tl-title">COLLATION AVANT SALLE</div><div class="tl-desc"><strong>1 banane</strong> uniquement · énergie pour la séance de 20h</div><div class="tl-tip">⚠️ Ne mange pas trop avant la salle — mal au ventre garanti</div></div></div></div>
+    <div class="tl-item"><div class="tl-time">20h00</div><div class="tl-card sport"><div class="tl-icon">💪</div><div class="tl-body"><div class="tl-title">SÉANCE SALLE</div><div class="tl-desc">Selon le jour de la semaine · eau pendant · rien d'autre</div><div class="tl-tip">⏱ 60-70 minutes maximum</div></div></div></div>
+    <div class="tl-item"><div class="tl-time">21h30</div><div class="tl-card shaker"><div class="tl-icon">🥤</div><div class="tl-body"><div class="tl-title">SHAKER — OBLIGATOIRE</div><div class="tl-desc"><strong>30g Prozis</strong> + <strong>300ml lait</strong> + <strong>1 banane</strong> · dans les 30 min après la séance</div><div class="tl-tip">🚨 C'est LE moment le plus important. Ne le rate JAMAIS.</div><div class="tl-tip">❌ Pas avant · pas pendant · APRÈS seulement</div></div></div></div>
+    <div class="tl-item"><div class="tl-time">22h00</div><div class="tl-card food"><div class="tl-icon">🥩</div><div class="tl-body"><div class="tl-title">DÎNER</div><div class="tl-desc"><strong>200g riz ou patate douce</strong> + <strong>200g viande rouge ou saumon</strong> + <strong>légumes</strong></div><div class="tl-tip">🍠 Patate douce : dés + huile d'olive + sel · poêle 20 min</div><div class="tl-tip">🐟 Saumon : poêle 4 min chaque côté · huile d'olive</div></div></div></div>
+    <div class="tl-item"><div class="tl-time">23h30</div><div class="tl-card food"><div class="tl-icon">🌙</div><div class="tl-body"><div class="tl-title">AVANT DODO</div><div class="tl-desc"><strong>200g fromage blanc</strong> nature · direct dans le pot</div><div class="tl-tip">💡 Protéines lentes = nourrit tes muscles toute la nuit</div></div></div></div>
+  </div>
+
+  <div id="j-we" style="display:none;">
+    <div class="tl-item"><div class="tl-time">8h00</div><div class="tl-card water"><div class="tl-icon">💧</div><div class="tl-body"><div class="tl-title">RÉVEIL</div><div class="tl-desc">500ml d'eau immédiatement</div></div></div></div>
+    <div class="tl-item"><div class="tl-time">8h30</div><div class="tl-card food"><div class="tl-icon">🍳</div><div class="tl-body"><div class="tl-title">PETIT-DÉJEUNER</div><div class="tl-desc"><strong>4 œufs</strong> · <strong>80g flocons d'avoine</strong> dans lait · <strong>1 banane</strong> · thé vert</div></div></div></div>
+    <div class="tl-item"><div class="tl-time">10h30</div><div class="tl-card food"><div class="tl-icon">🥣</div><div class="tl-body"><div class="tl-title">COLLATION</div><div class="tl-desc"><strong>1 yaourt grec</strong> + <strong>amandes</strong></div></div></div></div>
+    <div class="tl-item"><div class="tl-time">11h30</div><div class="tl-card sport"><div class="tl-icon">💪</div><div class="tl-body"><div class="tl-title">SÉANCE SALLE</div><div class="tl-desc">Selon le planning du week-end · eau uniquement</div></div></div></div>
+    <div class="tl-item"><div class="tl-time">13h00</div><div class="tl-card shaker"><div class="tl-icon">🥤</div><div class="tl-body"><div class="tl-title">SHAKER POST-SÉANCE</div><div class="tl-desc"><strong>30g Prozis</strong> + <strong>300ml lait</strong> + <strong>1 banane</strong> · dans les 30 min</div></div></div></div>
+    <div class="tl-item"><div class="tl-time">14h00</div><div class="tl-card food"><div class="tl-icon">🍚</div><div class="tl-body"><div class="tl-title">DÉJEUNER</div><div class="tl-desc"><strong>200g riz</strong> + <strong>200g poulet ou saumon</strong> + <strong>légumes</strong></div></div></div></div>
+    <div class="tl-item"><div class="tl-time">17h00</div><div class="tl-card food"><div class="tl-icon">🥜</div><div class="tl-body"><div class="tl-title">COLLATION</div><div class="tl-desc"><strong>1 yaourt grec</strong> ou <strong>noix</strong></div></div></div></div>
+    <div class="tl-item"><div class="tl-time">19h30</div><div class="tl-card food"><div class="tl-icon">🥩</div><div class="tl-body"><div class="tl-title">DÎNER</div><div class="tl-desc"><strong>200g riz ou patate douce</strong> + <strong>200g viande ou saumon</strong> + <strong>légumes</strong></div></div></div></div>
+    <div class="tl-item"><div class="tl-time">22h00</div><div class="tl-card food"><div class="tl-icon">🌙</div><div class="tl-body"><div class="tl-title">AVANT DODO</div><div class="tl-desc"><strong>200g fromage blanc</strong> nature</div></div></div></div>
+  </div>
+</div>
+
+<!-- ==================== COURSES 3 MOIS ==================== -->
+<div class="section" id="alimentation">
+  <div class="sec-title">ALIMENTATION</div>
+  <div class="sec-sub">Ce que tu manges · Où acheter · Combien</div>
+
+  <div style="background:#fdf5f4;border:1px solid #e8b4ae;border-radius:16px;padding:15px;margin-bottom:16px;">
+    <div style="font-weight:800;font-size:0.9rem;color:#c0392b;margin-bottom:8px;">🛒 COMMENT UTILISER CETTE LISTE</div>
+    <div style="font-size:0.82rem;color:#444;line-height:1.7;">Tu fais les courses <strong>chaque semaine</strong> — pas tout d'un coup. Les quantités indiquées sont <strong>pour 1 semaine</strong>. Répète chaque semaine pendant 3 mois.</div>
+  </div>
+
+  <!-- PROTÉINES -->
+  <div class="shop-sec">
+    <div class="shop-title">🥩 PROTÉINES — chaque semaine</div>
+
+    <a class="shop-item" href="https://maps.google.com/maps?vet=10CAAQoqAOahcKEwiQpsyu-4WUAxUAAAAAHQAAAAAQEw..i&rlz=1C1GCEA_enBE1211BE1211&sca_esv=e42243e293ad428e&pvq=OhYweDA6MHg4NWNkZGMyNzFiZWU3OTk4&fvr=1&cs=0&um=1&ie=UTF-8&fb=1&gl=be&sa=X&ftid=0x47c3c3058f940137:0x85cddc271bee7998" target="_blank">
+      <div class="shop-icon">🍗</div>
+      <div class="shop-info">
+        <div class="shop-name">Filet de poitrine de poulet halal</div>
+        <div class="shop-qty">1,5kg par semaine minimum</div>
+        <div class="shop-why">200g midi + 200g soir · boucherie halal Molenbeek</div>
+      </div>
+      <div class="shop-btn">BOUCHERIE</div>
+    </a>
+
+    <a class="shop-item" href="https://www.delhaize.be/fr/shop/Cremerie-fromage-et-alternatives-vegetales/Oeufs/Oeufs-frais/c/v2DAIEGGFRE" target="_blank">
+      <div class="shop-icon">🥚</div>
+      <div class="shop-info">
+        <div class="shop-name">Œufs frais</div>
+        <div class="shop-qty">Boîte de 18 par semaine</div>
+        <div class="shop-why">4 œufs chaque matin = 28 par semaine</div>
+      </div>
+      <div class="shop-btn">DELHAIZE</div>
+    </a>
+
+    <a class="shop-item" href="https://maps.google.com/maps?vet=10CAAQoqAOahcKEwiQpsyu-4WUAxUAAAAAHQAAAAAQEw..i&rlz=1C1GCEA_enBE1211BE1211&sca_esv=e42243e293ad428e&pvq=OhYweDA6MHg4NWNkZGMyNzFiZWU3OTk4&fvr=1&cs=0&um=1&ie=UTF-8&fb=1&gl=be&sa=X&ftid=0x47c3c3058f940137:0x85cddc271bee7998" target="_blank">
+      <div class="shop-icon">🥩</div>
+      <div class="shop-info">
+        <div class="shop-name">Viande rouge halal</div>
+        <div class="shop-qty">500g par semaine</div>
+        <div class="shop-why">2-3 repas du soir · riche en protéines et fer · boucherie halal</div>
+      </div>
+      <div class="shop-btn">BOUCHERIE</div>
+    </a>
+
+    <a class="shop-item" href="https://www.delhaize.be/fr/shop/Viande-poisson-et-produits-vegetariens/Poissons/Saumon/c/v2MEAFISSALM" target="_blank">
+      <div class="shop-icon">🐠</div>
+      <div class="shop-info">
+        <div class="shop-name">Filet de saumon · Delhaize</div>
+        <div class="shop-qty">400-600g par semaine (2-3 repas)</div>
+        <div class="shop-why">Oméga-3 = récupération musculaire · poêle 4 min/côté · halal naturellement</div>
+      </div>
+      <div class="shop-btn">DELHAIZE</div>
+    </a>
+  </div>
+
+  <!-- LAITIERS -->
+  <div class="shop-sec">
+    <div class="shop-title">🥛 LAITIERS — chaque semaine</div>
+
+    <a class="shop-item" href="https://www.delhaize.be/fr/shop/Cremerie-fromage-et-alternatives-vegetales/Yaourts-et-alternatives-vegetales/Yaourt-a-la-grecque/Yaourt-a-la-Grecque-Nature-10-/p/F2025052700158140000" target="_blank">
+      <div class="shop-icon">🥣</div>
+      <div class="shop-info">
+        <div class="shop-name">Yaourt à la grecque nature 10%</div>
+        <div class="shop-qty">7 pots par semaine (1 par jour)</div>
+        <div class="shop-why">Collation 10h + parfois avant dodo · 17g protéines/100g</div>
+      </div>
+      <div class="shop-btn">DELHAIZE</div>
+    </a>
+
+    <a class="shop-item" href="https://www.delhaize.be/fr/shop/Cremerie-fromage-et-alternatives-vegetales/Fromage-frais-et-Cottage/Fromage-blanc/c/v2DAIFROFRA" target="_blank">
+      <div class="shop-icon">🧀</div>
+      <div class="shop-info">
+        <div class="shop-name">Fromage blanc nature</div>
+        <div class="shop-qty">2 grands pots par semaine (500g)</div>
+        <div class="shop-why">200g chaque soir avant dodo · protéines lentes nocturnes</div>
+      </div>
+      <div class="shop-btn">DELHAIZE</div>
+    </a>
+
+    <a class="shop-item" href="https://www.delhaize.be/fr/shop/Cremerie-fromage-et-alternatives-vegetales/Lait/Lait-entier/c/v2DAILAIWHO" target="_blank">
+      <div class="shop-icon">🥛</div>
+      <div class="shop-info">
+        <div class="shop-name">Lait demi-écrémé ou entier</div>
+        <div class="shop-qty">2L par semaine minimum</div>
+        <div class="shop-why">Pour les flocons d'avoine le matin + le shaker post-séance</div>
+      </div>
+      <div class="shop-btn">DELHAIZE</div>
+    </a>
+  </div>
+
+  <!-- GLUCIDES -->
+  <div class="shop-sec">
+    <div class="shop-title">🍚 GLUCIDES — chaque semaine</div>
+
+    <a class="shop-item" href="https://www.delhaize.be/fr/shop/Epicerie-salee/Riz-pates-et-legumineuses/Riz/Riz-long-grain/c/v2GROSTARLGR" target="_blank">
+      <div class="shop-icon">🍚</div>
+      <div class="shop-info">
+        <div class="shop-name">Riz long grain</div>
+        <div class="shop-qty">1kg par semaine</div>
+        <div class="shop-why">Base de midi et soir · 200g cuit = 1 portion · cuis en grande quantité</div>
+      </div>
+      <div class="shop-btn">DELHAIZE</div>
+    </a>
+
+    <a class="shop-item" href="https://www.delhaize.be/fr/shop/Epicerie-sucree/Petit-dejeuner/Cereales/Flocons-d-avoine/Flocons-d-avoine/p/S2019062700267940000" target="_blank">
+      <div class="shop-icon">🌾</div>
+      <div class="shop-info">
+        <div class="shop-name">Flocons d'avoine Delhaize</div>
+        <div class="shop-qty">1 paquet (500g) par semaine</div>
+        <div class="shop-why">80g chaque matin · verse lait froid · attends 5 min · mange</div>
+      </div>
+      <div class="shop-btn">DELHAIZE</div>
+    </a>
+
+    <a class="shop-item" href="https://www.delhaize.be/fr/shop/Fruits-et-legumes/Fruits/Bananes/c/v2FRUBANA" target="_blank">
+      <div class="shop-icon">🍌</div>
+      <div class="shop-info">
+        <div class="shop-name">Bananes</div>
+        <div class="shop-qty">14-21 par semaine (2-3/jour)</div>
+        <div class="shop-why">Matin + 16h avant salle + post-séance dans le shaker</div>
+      </div>
+      <div class="shop-btn">DELHAIZE</div>
+    </a>
+  </div>
+
+  <!-- GRAISSES SAINES -->
+  <div class="shop-sec">
+    <div class="shop-title">🥜 GRAISSES SAINES — 1 fois/2 semaines</div>
+
+    <a class="shop-item" href="https://www.delhaize.be/fr/shop/Epicerie-salee/Snacks-et-aperitifs/Noix-et-fruits-secs/Amandes/c/v2GROSNUALM" target="_blank">
+      <div class="shop-icon">🥜</div>
+      <div class="shop-info">
+        <div class="shop-name">Amandes nature</div>
+        <div class="shop-qty">200-300g toutes les 2 semaines</div>
+        <div class="shop-why">Collation 10h avec yaourt · graisses saines + vitamine E</div>
+      </div>
+      <div class="shop-btn">DELHAIZE</div>
+    </a>
+
+    <a class="shop-item" href="https://www.delhaize.be/fr/shop/Epicerie-salee/Snacks-et-aperitifs/Noix-et-fruits-secs/Noix/c/v2GROSNUWLN" target="_blank">
+      <div class="shop-icon">🌰</div>
+      <div class="shop-info">
+        <div class="shop-name">Noix</div>
+        <div class="shop-qty">200g toutes les 2 semaines</div>
+        <div class="shop-why">Oméga-3 végétales · mélange avec amandes</div>
+      </div>
+      <div class="shop-btn">DELHAIZE</div>
+    </a>
+
+    <a class="shop-item" href="https://www.delhaize.be/fr/shop/Epicerie-salee/Huiles-et-vinaigres/Huile-d-olive/c/v2GROOILOIV" target="_blank">
+      <div class="shop-icon">🫒</div>
+      <div class="shop-info">
+        <div class="shop-name">Huile d'olive</div>
+        <div class="shop-qty">1 bouteille par mois</div>
+        <div class="shop-why">Sur tout : œufs, légumes, viandes · anti-inflammatoire</div>
+      </div>
+      <div class="shop-btn">DELHAIZE</div>
+    </a>
+  </div>
+
+  <!-- LÉGUMES -->
+  <div class="shop-sec">
+    <div class="shop-title">🥦 LÉGUMES — chaque semaine · à volonté</div>
+    <a class="shop-item" href="https://www.delhaize.be/fr/shop/Fruits-et-legumes/Legumes/c/v2FRUVEGSUB" target="_blank">
+      <div class="shop-icon">🥦</div>
+      <div class="shop-info">
+        <div class="shop-name">Rayon légumes frais</div>
+        <div class="shop-qty">Brocolis · courgettes · poivrons · épinards · carottes</div>
+        <div class="shop-why">À volonté à chaque repas · aucune limite · fibre + vitamines</div>
+      </div>
+      <div class="shop-btn">DELHAIZE</div>
+    </a>
+  </div>
+
+  <!-- INTERDIT -->
+  <div style="background:#fff0f0;border:1px solid #ff444444;border-radius:12px;padding:13px;">
+    <div style="font-family:'Bebas Neue',sans-serif;font-size:0.9rem;letter-spacing:2px;color:#ff4444;margin-bottom:8px;">🚫 N'ACHÈTE JAMAIS CES PRODUITS</div>
+    <div style="font-size:0.82rem;color:#444;line-height:1.8;">
+      Sodas (Coca, Fanta, etc.) · Jus de fruits en bouteille · Biscuits · Chips · Viennoiseries · Pain blanc en excès · Céréales sucrées type Kellogg's · Plats préparés · Sauces en bouteille · Bonbons · Alcool (ralentit la prise de muscle)
+    </div>
+  </div>
+</div>
+
+<script>
+function go(id,el){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+  el.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function toggleDay(header){
+  const body=header.nextElementSibling;
+  const isOpen=body.classList.contains('open');
+  body.classList.toggle('open',!isOpen);
+  header.classList.toggle('open',!isOpen);
+  body.style.display=isOpen?'none':'block';
+}
+// SUCRE LIPTON
+const sucreData = [
+  {sem:1, sucre:3, msg:"Commence avec 3 sucres comme d'habitude. Profite du goût — c'est la dernière semaine à 3 sucres !"},
+  {sem:2, sucre:2, msg:"Tu passes à 2 sucres cette semaine. Le goût change un peu — normal. Tiens bon."},
+  {sem:3, sucre:1, msg:"Plus qu'1 sucre cette semaine. Tu y es presque — ton palais s'adapte."},
+  {sem:4, sucre:0, msg:"🎉 Zéro sucre ! Tu as réussi. Ton thé est maintenant 100% propre. Tu ne sentiras plus la différence."},
+];
+// Pour les semaines 5+, 0 sucre
+let semCurrent = parseInt(localStorage.getItem('semSucre') || '1');
+
+function updateSucre(){
+  const idx = Math.min(semCurrent, 4) - 1;
+  const d = sucreData[idx] || sucreData[3];
+  const nb = d.sucre;
+  document.getElementById('semaine-num').textContent = 'SEM ' + semCurrent;
+  document.getElementById('sucre-display').textContent = nb === 0 ? '✅ 0 sucre — objectif atteint !' : `🍵 ${nb} sucre${nb>1?'s':''} dans ton Lipton`;
+  let barre = '';
+  for(let i=0;i<3;i++){
+    const color = i < nb ? '#ffaa00' : '#e8e8e8';
+    const border = i < nb ? '#ffaa00' : '#30363d';
+    barre += `<div style="flex:1;height:14px;background:${color};border:1px solid ${border};border-radius:4px;transition:all 0.3s;"></div>`;
+  }
+  document.getElementById('sucre-barre').innerHTML = barre;
+  document.getElementById('sucre-conseil').textContent = d.msg;
+}
+function semNext(){
+  if(semCurrent < 12) { semCurrent++; localStorage.setItem('semSucre', semCurrent); updateSucre(); }
+}
+function semPrev(){
+  if(semCurrent > 1) { semCurrent--; localStorage.setItem('semSucre', semCurrent); updateSucre(); }
+}
+updateSucre();
+
+function showJ(type,btn){
+  document.getElementById('j-sem').style.display=type==='sem'?'block':'none';
+  document.getElementById('j-we').style.display=type==='we'?'block':'none';
+  [document.getElementById('btnSem'),document.getElementById('btnWe')].forEach(b=>{
+    const active=b===btn;
+    b.style.background=active?'#fff3ee':'var(--card)';
+    b.style.borderColor=active?'var(--orange)':'var(--border)';
+    b.style.color=active?'var(--orange)':'var(--grey)';
+    b.style.borderWidth=active?'2px':'1px';
+  });
+}
+</script>
+</body>
+</html>
